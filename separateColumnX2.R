@@ -1,0 +1,17 @@
+con<-url("http://biostat.jhsph.edu/~jleek/contact.html")
+htmlcode<-readLines(con)
+nchar(htmlcode[10])
+nchar(htmlcode[20])
+nchar(htmlcode[30])
+nchar(htmlcode[100])
+
+
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for",'file.for')
+filedata<-read.csv("./file.for")
+library(dplyr)
+library(tidyr)
+df<-filedata %>% separate(names(filedata), c("A", "B","C","D","E"),sep = "     ")
+df2<-df %>% separate("C", c("a", "b"),sep = "-")
+df3<-df2 %>% separate("a", c("a1", "b1"),sep = " ")
+df4<-as.double(df3$a1)
+sum(df4)
